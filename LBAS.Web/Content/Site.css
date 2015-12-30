@@ -1,0 +1,146 @@
+﻿body {
+    padding-top: 132px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Margin top*/
+.top5 { margin-top: 5px; }
+.top10 { margin-top: 10px; }
+.top15 { margin-top: 15px; }
+.top20 { margin-top: 20px; }
+
+/* Margin left*/
+.margin-left5 { margin-left: 5px; }
+.margin-left10 { margin-left: 10px; }
+
+/* Padding top*/
+.padding-top7 { padding-top: 7px; }
+.padding-top10 { padding-top: 10px; }
+.padding-top15 { padding-top: 15px; }
+.padding-top20 { padding-top: 20px; }
+
+/* Padding left*/
+.padding-left0 { padding-left: 0px; }
+.padding-left10 { padding-left: 10px; }
+
+/* System */
+#system-list-table {
+    margin-top: 30px;
+    table-layout: fixed;
+}
+
+
+.in-progress-icon {
+    padding-left: 10px;
+}
+
+/* Add More Info page */
+#more-info-container {
+    padding-right: 0px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#more-info-container.toggled {
+    padding-right: 500px;
+}
+
+#find-dealer-container {
+    z-index: 1000;
+    position: fixed;
+    right: 500px;
+    width: 0;
+    height: 100%;
+    margin-right: -500px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border-left: 1px solid #ccc;
+}
+
+#more-info-container.toggled #find-dealer-container {
+    width: 500px;
+}
+
+#main-more-info-container {
+    padding: 20px;
+    position: relative;
+}
+
+#more-info-container.toggled #main-more-info-container {
+    position: relative;
+    margin-right: 0;
+}
+
+#open-find-dealer, #search-dealer {
+    width: 34px;
+    height: 34px;
+    background: url(img/search.png) center center no-repeat;
+}
+
+/* Dashboard */
+.dashboard_device_map {
+    height: 400px;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+
+/* Detail System page */
+#detail-system-container {
+    padding-right: 0px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#detail-system-container.toggled {
+    padding-right: 500px;
+}
+
+#detail-system-container.toggled #find-dealer-container {
+    width: 500px;
+}
+
+#main-detail-system-container {
+    padding: 20px;
+    position: relative;
+}
+
+#detail-system-container.toggled #main-detail-system-container {
+    position: relative;
+    margin-right: 0;
+}

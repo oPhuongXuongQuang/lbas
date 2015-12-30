@@ -1,0 +1,62 @@
+﻿<div id="find-dealer-container">
+    <div class="margin-left10">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h1 class="box-title">Detail System</h1>
+            </div>
+            <div class="box-body">
+                <div class="col-md-8">
+                    <div class="col-md-5">
+                        @Html.TextBox("Search", "Enter Dealer", new { @class = "form-control", @style = "display:inline-block" })
+                    </div>
+                    <div class="col-md-3">
+                        <a id="close-find-dealer" href="#" class="btn btn-default">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h1 class="box-title">Dealer List</h1>
+            </div>
+            <div class="box-body">
+                <table id="dealer-list-table" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-sm-4">Dealer Name</th>
+                            <th class="col-sm-6">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="1">
+                            <td>Dealer001</td>
+                            <td>Flexy™ EC Rooftop 1</td>
+                        </tr>
+                        <tr id="2">
+                            <td>Dealer002</td>
+                            <td>Flexy™ EC Rooftop 1</td>
+                        </tr>
+                        <tr id="3">
+                            <td>Dealer003</td>
+                            <td>Flexy™ EC Rooftop 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	$("#close-find-dealer").click(function(e) {
+        e.preventDefault();
+        $("#more-info-container").toggleClass("toggled");
+	});
+
+	$("#dealer-list-table tr").click(function (e) {
+	    e.preventDefault();
+	    var id = $(this).attr("id");
+	    $("#Dealer").val(id);
+	});
+</script>

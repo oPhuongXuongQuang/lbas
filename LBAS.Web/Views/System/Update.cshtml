@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var corporationList = (SelectList)ViewBag.corporationList;
+    var franchiseList = (SelectList)ViewBag.franchiseList;
+
+    LBAS.Web.Models.CommandViewModel command1 = new LBAS.Web.Models.CommandViewModel();
+    command1.CommandList = ViewBag.commandList;
+    command1.IsExtensionCommand = false;
+
+    LBAS.Web.Models.CommandViewModel command2 = new LBAS.Web.Models.CommandViewModel();
+    command2.CommandList = ViewBag.commandList;
+    command2.IsExtensionCommand = true;
+}
+
+<ul class="breadcrumb">
+    <li><a href="/Site">Site Management</a></li>
+    <li><a href="/System/SystemsOfSite/1">System List</a></li>
+    <li class="active">Update System</li>
+</ul>
+
+<h2>Update</h2>
+
+<div class="row top15">
+    <div class="col-md-2">LCC Serial No. *</div>
+    <div class="col-md-10">@Html.TextBox("SerialNo", "1234567890", new { disabled = "disabled", @class = "form-control" })</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">System Name</div>
+    <div class="col-md-10">Flexy™ EC Rooftop</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">Corporation</div>
+    <div class="col-md-10">@Html.DropDownList("Corporation", corporationList, new { disabled = "disabled", @class = "form-control" })</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">Franchise</div>
+    <div class="col-md-10">@Html.DropDownList("Franchise", franchiseList, new { disabled = "disabled", @class = "form-control" })</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">Site Address</div>
+    <div class="col-md-10">2140 Lake Park Blvd. Richardson, TX 75080</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">Command(s)</div>
+    <div id="command-container" class="col-md-10">
+        @Html.Partial("_Command", command1)
+        @Html.Partial("_Command", command2)
+    </div>
+</div>
+<div class="row top15">
+    <div class="col-md-10 col-lg-offset-2">
+        <a id="send-command-button" href="#" class="btn btn-default">Send Command</a>
+    </div>
+</div>
+
+@Html.Partial("_CommandHistory")
+
+<script>
+    $(document).on('click', '.command-plus', function (event) {
+        event.preventDefault();
+        $parent = $(this).parent().parent().parent();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("AddNewCommand", "System")',
+            async: false,
+            dataType: "html",
+            success: function (data) {
+                $(data).insertAfter($parent);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(thrownError);
+            }
+        });
+    });
+
+    $(document).on('click', '.command-minus', function (event) {
+        event.preventDefault();
+        $parent = $(this).parent().parent().parent();
+        $parent.remove();
+    });
+
+    $(document).on('click', '#send-command-button', function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("SendCommand", "System")',
+            async: false,
+            dataType: "html",
+            success: function (data) {
+                $("#command-history-table").append(data);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(thrownError);
+            }
+        });
+    });
+</script>
+

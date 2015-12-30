@@ -1,0 +1,264 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var corporationList = (SelectList)ViewBag.corporationList;
+    var franchiseList = (SelectList)ViewBag.franchiseList;
+    var dealerList = (SelectList)ViewBag.dealerList;
+    var buildingList = (SelectList)ViewBag.buildingList;
+
+    //System prop
+
+    var serialNo = (string)ViewBag.SerialNo;
+
+    var siteAddress = (string)ViewBag.SiteAddress;
+    var systemAddres = (string)ViewBag.SystemAddress;
+    var city = (string)ViewBag.City;
+    var stateList = (SelectList) ViewBag.stateList;
+    var zipCode = (string)ViewBag.ZipCode;
+}
+
+
+<ul class="breadcrumb">
+    <li><a href="/System">System List</a></li>
+    <li class="active">Detail System</li>
+</ul>
+
+<div class="col-md-12">
+    
+
+            @Html.Partial("_FindDealer")
+            <div class="row top15">
+                <div class="col-md-2">System Name</div>
+                <div class="col-md-10">Flexy™ EC Rooftop</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">LCC Serial No.</div>
+                <div class="col-md-10">@Html.TextBox("SerialNo", serialNo, new { disabled = "disabled", @class = "form-control" })</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">Corporation</div>
+                <div class="col-md-10">@Html.DropDownList("Corporation", corporationList, new { disabled = "disabled", @class = "form-control" })</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">Franchise</div>
+                <div class="col-md-10">@Html.DropDownList("Franchise", franchiseList, new { disabled = "disabled", @class = "form-control" })</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">Site Address</div>
+                <div class="col-md-10">@Html.Raw(siteAddress)</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">System Address</div>
+                <div class="col-md-10">@Html.TextBox("SystemAddres", systemAddres, new { disabled = "disabled", @class = "form-control" })</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">City</div>
+                <div class="col-md-10">@Html.TextBox("City", city, new { disabled = "disabled", @class = "form-control" })</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">State</div>
+                <div class="col-md-10">
+                    @Html.DropDownList("State", stateList, new { disabled = "disabled", @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">Zip code</div>
+                <div class="col-md-10">@Html.TextBox("ZipCode", zipCode, new { disabled = "disabled", @class = "form-control" })</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">Dealer</div>
+                <div class="col-md-10">
+                    @Html.DropDownList("Dealer", dealerList, new { @class = "form-control", @style = "display: inline-block" })
+                    <a id="open-find-dealer" href="#" class="btn btn-default"></a>
+                </div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">N.A.S</div>
+                <div class="col-md-10">@Html.CheckBox("NAS")</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">Building</div>
+                <div class="col-md-10">
+                    @Html.DropDownList("Building", buildingList, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-2">Status</div>
+                <div id="status" class="col-md-10">Pending</div>
+            </div>
+
+            <div id="checking-status-connection" class="row top15 hide">
+                <div class="col-md-2">Checking items:</div>
+                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-12">
+                            System to Cloud connection:
+                            <span id="system-status">In-progress</span>
+                            <img id="system-status-icon" class="in-progress-icon" src="~/Content/img/in-progress.gif" />
+                        </div>
+                    </div>
+                    <div class="row top15">
+                        <div class="col-md-12">
+                            Cloud to System connection:
+                            <span id="cloud-status">In-progress</span>
+                            <img id="cloud-status-icon" class="in-progress-icon" src="~/Content/img/in-progress.gif" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="alert-container" class="row top15 hide">
+                <div class="alert alert-danger">
+                </div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-12">
+                    <a id="enable-connection-btn" href="#" class="btn btn-default">Enable Connection</a>
+                    <a id="abort-connection-btn" href="/System/AbortConnection/1" class="btn btn-default hide">Abort</a>
+                    <a id="retry-connection-btn" href="#" class="btn btn-default hide">Retry</a>
+                    <a id="done-connection-btn" href="/System" class="btn btn-default hide">Done</a>
+                </div>
+            </div>
+</div>
+<script>
+            $("#open-find-dealer").click(function (e) {
+                e.preventDefault();
+                $("#more-info-container").toggleClass("toggled");
+            });
+
+            $('#enable-connection-btn').click(function (event) {
+                event.preventDefault();
+                connectSystem();
+            });
+   
+            function connectSystem() {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("ConnectSystem", "System")',
+                    data: {
+                        id: 1
+                    },
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.IsRegister == true) {
+                            $('#alert-container').addClass('hide');
+                            $('.alert-danger').html('');
+
+                            $('#checking-status-connection').removeClass('hide');
+
+                            $('#enable-connection-btn').addClass('hide');
+                            $('#abort-connection-btn').removeClass('hide');
+                            $('#retry-connection-btn').addClass('hide');
+                            $('#done-connection-btn').addClass('hide');
+                            enableConnection();
+                        } else {
+                            $('#alert-container').removeClass('hide');
+                            $('.alert-danger').html(data.Message);
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(thrownError);
+                    }
+                });
+            };
+
+            function enableConnection() {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("EnableConnection", "System")',
+                    data: {
+                        id: 1
+                    },
+                    async: false,
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.system == 0) {
+                            $('#system-status').html('Success');
+                            $('#system-status-icon').attr('src', '/Content/img/success.png');
+                        } else if (data.system == 1) {
+                            $('#system-status').html('Fail');
+                            $('#system-status-icon').attr('src', '/Content/img/fail.png');
+                        } else {
+                            $('#system-status').html('In-progress');
+                            $('#system-status-icon').attr('src', '/Content/img/in-progress.gif');
+                        }
+
+                        if (data.cloud == 0) {
+                            $('#cloud-status').html('Success');
+                            $('#cloud-status-icon').attr('src', '/Content/img/success.png');
+                        } else if (data.cloud == 1) {
+                            $('#cloud-status').html('Fail');
+                            $('#cloud-status-icon').attr('src', '/Content/img/fail.png');
+                        } else {
+                            $('#cloud-status').html('In-progress');
+                            $('#cloud-status-icon').attr('src', '/Content/img/in-progress.gif');
+                        }
+
+                        if (data.system == 0 && data.cloud == 0) {
+                            $('#status').html('Success');
+                            $('#enable-connection-btn').addClass('hide');
+                            $('#abort-connection-btn').addClass('hide');
+                            $('#retry-connection-btn').addClass('hide');
+                            $('#done-connection-btn').removeClass('hide');
+
+                            $('#alert-container').removeClass('hide');
+                            $('.alert-danger').html(data.Message);
+                        } else if (data.system == 1 || data.cloud == 1) {
+                            $('#status').html('Fail');
+                            $('#enable-connection-btn').addClass('hide');
+                            $('#abort-connection-btn').addClass('hide');
+                            $('#retry-connection-btn').removeClass('hide');
+                            $('#done-connection-btn').addClass('hide');
+
+                            $('#alert-container').removeClass('hide');
+                            $('.alert-danger').html(data.Message);
+                        } else {
+                            $('#status').html('Pending');
+                            $('#enable-connection-btn').addClass('hide');
+                            $('#abort-connection-btn').removeClass('hide');
+                            $('#retry-connection-btn').addClass('hide');
+                            $('#done-connection-btn').addClass('hide');
+
+                            $('#alert-container').addClass('hide');
+                            $('.alert-danger').html('');
+
+                            setTimeout(enableConnection, 3000);
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(thrownError);
+                    }
+                });
+            };
+
+            $('#retry-connection-btn').click(function (event) {
+                event.preventDefault();
+                $('#alert-container').addClass('hide');
+                $('.alert-danger').html('');
+
+                $('#checking-status-connection').removeClass('hide');
+
+                $('#enable-connection-btn').addClass('hide');
+                $('#abort-connection-btn').removeClass('hide');
+                $('#retry-connection-btn').addClass('hide');
+                $('#done-connection-btn').addClass('hide');
+                enableConnection();
+            });
+
+</script>

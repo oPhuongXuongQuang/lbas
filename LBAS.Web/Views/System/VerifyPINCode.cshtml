@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "VerifyPINCode";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var corporationList = (SelectList)ViewBag.corporationList;
+    var franchiseList = (SelectList)ViewBag.franchiseList;
+    var system = ViewBag.system;
+   
+}
+
+<ul class="breadcrumb">
+    <li><a href="/System">System List</a></li>
+    <li><a href="/System/RegisterSystem">Register New System</a></li>
+    <li><a href="/System/RegisterSystem">PIN Code</a></li>
+    <li class="active">Verify PIN Code</li>
+</ul>
+
+<h2>Register New System</h2>
+
+<div class="row top15">
+    <div class="col-md-2">PIN Code (*)</div>
+    <div class="col-md-10">@Html.TextBox("PINCode", (string) system.PinCode, new { disabled = "disabled", @class = "form-control" })</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">LCC's Serial No.</div>
+    <div class="col-md-10">@Html.TextBox("SerialNo", (string) system.SerialNo, new { disabled = "disabled", @class = "form-control" })</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-10 col-lg-offset-2"><img src="~/Content/img/success.png" /> Device authenticated.</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">System Name</div>
+    <div class="col-md-10">Flexy™ EC Rooftop</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">Corporation</div>
+    <div class="col-md-10">@Html.DropDownList("Corporation", corporationList, new { disabled = "disabled", @class = "form-control" })</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">Franchise</div>
+    <div class="col-md-10">@Html.DropDownList("Franchise", franchiseList, new { disabled = "disabled", @class = "form-control" })</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-2">Site Address</div>
+    <div class="col-md-10">2140 Lake Park Blvd. Richardson, TX 75080</div>
+</div>
+
+<div class="row top15">
+    <div class="col-md-12">
+        @Html.ActionLink("Next", "AddMoreInfo", "System", null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Cancel", "Index", "System", null, new { @class = "btn btn-default" })
+    </div>
+</div>
+

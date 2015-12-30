@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li class="active">Site Management</li>
+</ul>
+
+
+<div class="col-md-12">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h1 class="box-title">Site Management</h1>
+        </div>
+        <div class="box-body">
+            <table id="system-list-table" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-md-1" style="width: 4%">No</th>
+                        <th class="col-md-2">Corporation Name</th>
+                        <th class="col-md-2">Franchise</th>
+                        <th class="col-md-1">Dealer</th>
+                        <th class="col-md-2">Owner ID</th>
+                        <th class="col-md-2">Site Address</th>
+                        <th class="col-md-1"  style="width:12%">No. Systems</th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>McDonalds</td>
+                        <td>McDonalds-FR01</td>
+                        <td>Dealer001</td>
+                        <td>SiteOwner01</td>
+                        <td>2100 Lake Park</td>
+                        <td>2</td>
+                        @*<td>@Html.ActionLink("Detail", "Details", "Site", new { id = 1 }, new { @class = "btn btn-default" })</td>*@
+                        <td>@Html.ActionLink("Detail", "Index", "System", new { SiteId = 1 }, new { @class = "btn btn-default" })</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>McDonalds</td>
+                        <td>McDonalds-FR01</td>
+                        <td>Dealer001</td>
+                        <td>SiteOwner01</td>
+                        <td>2100 Lake Park</td>
+                        <td>2</td>
+                        @*<td>@Html.ActionLink("Detail", "Details", "Site", new { id = 1 }, new { @class = "btn btn-default" })</td>*@
+                        <td>@Html.ActionLink("Detail", "Index", "System", new { SiteId = 1 }, new { @class = "btn btn-default" })</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>McDonalds</td>
+                        <td>McDonalds-FR01</td>
+                        <td>Dealer001</td>
+                        <td>SiteOwner01</td>
+                        <td>2100 Lake Park</td>
+                        <td>2</td>
+                        @*<td>@Html.ActionLink("Detail", "Details", "Site", new { id = 1 }, new { @class = "btn btn-default" })</td>*@
+                        <td>@Html.ActionLink("Detail", "Index", "System", new { SiteId = 1 }, new { @class = "btn btn-default" })</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>McDonalds</td>
+                        <td>McDonalds-FR01</td>
+                        <td>Dealer001</td>
+                        <td>SiteOwner01</td>
+                        <td>2100 Lake Park</td>
+                        <td>2</td>
+                        @*<td>@Html.ActionLink("Detail", "Details", "Site", new { id = 1 }, new { @class = "btn btn-default" })</td>*@
+                        <td>@Html.ActionLink("Detail", "SystemsOfSite", "System", new { SiteId = 1 }, new { @class = "btn btn-default" })</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>McDonalds 1</td>
+                        <td>McDonalds-FR01</td>
+                        <td>Dealer001</td>
+                        <td>SiteOwner01</td>
+                        <td>2100 Lake Park</td>
+                        <td>2</td>
+                        @*<td>@Html.ActionLink("Detail", "Details", "Site", new { id = 1 }, new { @class = "btn btn-default" })</td>*@
+                        <td>@Html.ActionLink("Detail", "SystemsOfSite", "System", new { SiteId = 1 }, new { @class = "btn btn-default" })</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

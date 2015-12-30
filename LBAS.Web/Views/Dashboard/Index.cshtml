@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var corporationList = (SelectList)ViewBag.corporationList;
+    var franchiseList = (SelectList)ViewBag.franchiseList;
+}
+
+
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <h2>Bing Maps</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Corporation</div>
+            <div class="col-md-4">@Html.DropDownList("corporationList", corporationList, new { @class = "form-control" })</div>
+            <div class="col-md-2">Franchise</div>
+            <div class="col-md-4">@Html.DropDownList("franchiseList", franchiseList, new { @class = "form-control" })</div>
+        </div>
+        <div class="row" style="margin-top:20px"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="deviceMap" class="dashboard_device_map">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <h3>Detail Information:</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">System Name</div>
+            <div class="col-md-6 system-name"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Device Id</div>
+            <div class="col-md-6 device-id"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Hub enable state</div>
+            <div class="col-md-6 hub-enable-state"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Created Time</div>
+            <div class="col-md-6 created-time"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Device State</div>
+            <div class="col-md-6 device-state"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Updated Time</div>
+            <div class="col-md-6 updated-time"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Manufacturer</div>
+            <div class="col-md-6 manufacturer"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Model Number</div>
+            <div class="col-md-6 model-number"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Serial Number</div>
+            <div class="col-md-6 serial-number"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Firmware Version</div>
+            <div class="col-md-6 firmware-version"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Platform</div>
+            <div class="col-md-6 platform"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Processor</div>
+            <div class="col-md-6 processor"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Installed RAM</div>
+            <div class="col-md-6 installed-ram"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Latitude</div>
+            <div class="col-md-6 latitude"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Longtitude</div>
+            <div class="col-md-6 longtitude"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Corporation</div>
+            <div class="col-md-6 corporation"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Franchise</div>
+            <div class="col-md-6 franchise"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Site Address</div>
+            <div class="col-md-6 site-address"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">System Address</div>
+            <div class="col-md-6 system-address"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 ">Building</div>
+            <div class="col-md-6 building"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">Zone</div>
+            <div class="col-md-6 zone"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">Temperature (oF)</div>
+            <div class="col-md-6 temperature"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">Humility (%)</div>
+            <div class="col-md-6 humility"></div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        'use strict';
+
+        var resources = {
+            active: '',
+            alarm: '',
+            alarmHistory: '',
+            allClearStatusIcon: 'Content/img/icon_status_all_clear.svg',
+            cautionStatusIcon: 'Content/img/icon_status_caution.svg',
+            closed: '',
+            criticalStatusIcon: 'Content/img/icon_status_critical.svg',
+            humidity: '',
+            information: '',
+            telemetryGaugeNumericFormat: '',
+            temperature: '',
+            alertHistoryType: '',
+            unableToRetrieveAlertsHistoryFromService: '',
+            unableToRetrieveDeviceTelemetryFromService: ''
+        };
+
+
+    </script>
+
+    <script charset="UTF-8" type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+    <script type="text/javascript" src="~/Scripts/Dashboard/IoTApp.js"></script>
+    <script type="text/javascript" src="~/Scripts/Dashboard/MapPane.js"></script>
+
+

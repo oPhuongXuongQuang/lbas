@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<ul class="breadcrumb">
+    <li><a href="/Site">Site Management</a></li>
+    <li class="active">System List</li>
+</ul>
+
+<h2>System List - 2140 Lake Park Blvd. Richardson, TX 75080</h2>
+
+<table id="system-list-table" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="col-md-1" style="width: 4%">No</th>
+            <th class="col-md-1" style="width: 11%">Building</th>
+            <th class="col-md-2">System Name</th>
+            <th class="col-md-1">Zone</th>
+            <th class="col-md-2">Temperature (oF)</th>
+            <th class="col-md-2">Humidity (%)</th>
+            <th class="col-md-2">Command Status</th>
+            <th class="col-md-1" style="width:9%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Building001</td>
+            <td>Flexy™ EC Rooftop 1</td>
+            <td>Zone 1</td>
+            <td>80</td>
+            <td>50</td>
+            <td>Success</td>
+            <td>@Html.ActionLink("Update", "Details", "Site", new { id = 1 }, new { @class = "btn btn-default" })</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Building001</td>
+            <td>Flexy™ EC Rooftop 1</td>
+            <td>Zone 1</td>
+            <td>80</td>
+            <td>50</td>
+            <td>Success</td>
+            <td>@Html.ActionLink("Update", "Details", "Site", new { id = 1 }, new { @class = "btn btn-default" })</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Building001</td>
+            <td>Flexy™ EC Rooftop 1</td>
+            <td>Zone 1</td>
+            <td>80</td>
+            <td>50</td>
+            <td>Success</td>
+            <td>@Html.ActionLink("Update", "Details", "Site", new { id = 1 }, new { @class = "btn btn-default" })</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+

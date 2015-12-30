@@ -1,0 +1,21 @@
+﻿@model LBAS.Web.Models.CommandViewModel
+
+<div class="col-md-12 padding-left0">
+    <div class="row @(Model.IsExtensionCommand ? "top15" : "")">
+        <div class="col-md-3">
+            @Html.DropDownList("CommandType", Model.CommandList, new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            @Html.TextBox("CommandValue", "80", new { @class = "form-control" })
+        </div>
+        <div class="col-md-7">
+            <a href="#" class="btn btn-default command-plus">+</a>
+            @{
+                if (Model.IsExtensionCommand)
+                {
+                    <a href="#" class="btn btn-default command-minus margin-left10">-</a>
+                }
+            }
+        </div>
+    </div>
+</div>

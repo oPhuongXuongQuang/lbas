@@ -1,0 +1,108 @@
+﻿@model Microsoft.Azure.ActiveDirectory.GraphClient.User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var industryList = (SelectList)ViewBag.industryList;
+    var stateList = (SelectList)ViewBag.stateList;
+}
+
+<ul class="breadcrumb">
+    <li class="active">New Corporation</li>
+</ul>
+
+@using (Html.BeginForm()) 
+{
+    
+<div class="col-md-12">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h1 class="box-title">New Corporation</h1>
+        </div>
+        <div class="form-horizontal">
+            <div class="box-body col-md-8">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DisplayName, htmlAttributes: new { @class = "control-label col-md-4" })
+           
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisplayName, "", new { @class = "text-danger" })
+           
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md-4" })
+           
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.JobTitle, industryList, new { @class = "form-control" })
+           
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StreetAddress, htmlAttributes: new { @class = "control-label col-md-4" })
+           
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
+           
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
+           
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+           
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-4" })
+           
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.State, stateList, new { @class = "form-control" })
+           
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-md-4" })
+           
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+           
+                    </div>
+                </div>
+
+                 @{
+                    if (!String.IsNullOrEmpty(ViewBag.Message))
+                    {
+                        <div id="alert-container" class="row top15">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <div class="alert alert-success">
+                                    @ViewBag.Message
+                       
+                                </div>
+                            </div>
+                        </div>
+                    }
+                 }
+
+       
+
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

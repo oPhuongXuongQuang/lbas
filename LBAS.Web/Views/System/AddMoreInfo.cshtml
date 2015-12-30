@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "AddMoreInfo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var corporationList = (SelectList)ViewBag.corporationList;
+    var dealerList = (SelectList)ViewBag.dealerList;
+    var buildingList = (SelectList)ViewBag.buildingList;
+
+    var system = ViewBag.system;
+}
+
+<div class="row">
+    <div id="more-info-container">
+        
+        @Html.Partial("_FindDealer")
+
+        <div id="main-more-info-container">
+            <ul class="breadcrumb">
+                <li><a href="/System">System List</a></li>
+                <li><a href="/System/RegisterSystem">Register New System</a></li>
+                <li><a href="/System/RegisterSystem">PIN Code</a></li>
+                <li><a href="/System/VerifyPINCode">Verify PIN Code</a></li>
+                <li class="active">Add More Info</li>
+            </ul>
+
+            <h2>Register New System</h2>
+
+            <div class="row top15">
+                <div class="col-md-3">System Name</div>
+                <div class="col-md-9">Flexy™ EC Rooftop</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">Corporation</div>
+                <div class="col-md-9">@Html.DropDownList("Corporation", corporationList, new { disabled = "disabled", @class = "form-control" })</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">Site Address</div>
+                <div class="col-md-9">2140 Lake Park Blvd. Richardson, TX 75080</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">System Address</div>
+                <div class="col-md-9">Floor 2 - 2140 Lake Park Blvd. Richardson</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">City</div>
+                <div class="col-md-9">Dallas</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">State</div>
+                <div class="col-md-9">
+                    <select disabled>
+                        <option value="Texas">Texas</option>
+                    </select> 
+                </div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">Zip code</div>
+                <div class="col-md-9">75080</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">Dealer</div>
+                <div class="col-md-9">
+                    @Html.DropDownList("Dealer", dealerList, new { @class = "form-control", @style = "display: inline-block" })
+                    <a id="open-find-dealer" href="#" class="btn btn-default"></a>
+                </div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">N.A.S</div>
+                <div class="col-md-9">@Html.CheckBox("NAS")</div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-3">Building</div>
+                <div class="col-md-9">
+                    @Html.DropDownList("Building", buildingList, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="row top15">
+                <div class="col-md-12">
+                    <a href="/System/SaveSystem" class="btn btn-default">Save</a>
+                    <a href="/System" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+	$("#open-find-dealer").click(function(e) {
+        e.preventDefault();
+        $("#more-info-container").toggleClass("toggled");
+    });
+</script>
+

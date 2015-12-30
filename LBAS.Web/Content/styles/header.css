@@ -1,0 +1,31 @@
+﻿.top-header {
+    height: 5px;
+    background-color: #C70022;
+}
+.bottom-header {
+    clear: both;
+    height: 32px;
+    background-color: #AAAAAA;
+}
+.navbar-header {
+    margin-top: 30px;
+    font-size: 36px;
+    font-weight: 700;
+}
+.navbar-header .span-1 {
+    color: #C70022;
+    line-height: 43px;
+}
+.navbar-header .span-2 {
+    line-height: 43px;
+    margin-left: -10px;
+}
+.navbar-header .span-3 {
+    font-size: 24px;
+    font-family: proxima-nova, sans-serif;
+    font-weight: 300;
+    line-height: 29px;
+}
+.navbar-right img {
+    margin-top: 37px;
+}
