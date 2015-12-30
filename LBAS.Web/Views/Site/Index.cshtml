@@ -88,5 +88,19 @@
         </div>
     </div>
 </div>
-
+<script>
+    (function ($) {
+        $.fn.dataTableExt.sErrMode = 'throw';
+        $("#system-list-table").DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "autoHeight": true,
+            "searching": true
+        });
+     })(jQuery);
+</script>
 

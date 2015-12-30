@@ -25,7 +25,7 @@ namespace LBAS.Web
 
             // AdminLTE
             bundles.Add(new ScriptBundle("~/bundles/adminLTE").Include(
-                        "~/Content/dist/js/app.min.js",
+                        "~/Content/dist/js/app.js",
                         "~/Content/dist/js/pages/dashboard.js"));
 
             // DataTable

@@ -43,14 +43,17 @@
 
     @Html.Partial("_Footer")
     <script>
+    var table;
+
      (function ($) {
-        $("#system-list-table").DataTable({
+         table = $("#system-list-table").DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,
             "ordering": true,
             "info": true,
-            "autoWidth": false
+            "autoWidth": false,
+            "autoHeight": true,
         });    
      })(jQuery);
     </script>
